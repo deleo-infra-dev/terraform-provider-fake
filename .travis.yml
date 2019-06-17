@@ -1,0 +1,26 @@
+dist: trusty
+language: go
+
+go:
+ - 1.12
+
+script:
+- curl -o terraform.zip https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
+- sudo unzip terraform.zip terraform -d /usr/local/bin/
+- go build
+- terraform init
+- terraform plan
+- terraform apply -auto-approve
+- terraform state show fake.test
+- sed -i 's/value = ""/value = "tmp"/' main.tf
+- terraform plan
+- terraform apply -auto-approve
+- terraform state show fake.test
+- sed -i 's/value = "tmp"/value = ""/' main.tf
+- terraform plan
+- terraform apply -auto-approve
+- terraform state show fake.test
+
+branches:
+  only:
+  - master

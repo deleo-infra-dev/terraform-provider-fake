@@ -1,0 +1,3 @@
+resource "fake" "test" {
+  value = ""
+}
