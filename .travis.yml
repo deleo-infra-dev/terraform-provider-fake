@@ -20,6 +20,7 @@ script:
 - terraform plan
 - terraform apply -auto-approve
 - terraform state show fake.test
+- make testacc
 
 branches:
   only:
