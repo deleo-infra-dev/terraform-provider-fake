@@ -1,16 +1,15 @@
 package main
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
+  "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-var testAccProviders map[string]terraform.ResourceProvider
 var testAccProvider *schema.Provider
+var testAccProviders map[string]*schema.Provider
 
 func init() {
-	testAccProvider = Provider().(*schema.Provider)
-	testAccProviders = map[string]terraform.ResourceProvider{
-		"fake": testAccProvider,
-	}
+  testAccProvider = Provider()
+  testAccProviders = map[string]*schema.Provider{
+    "fake": testAccProvider,
+  }
 }

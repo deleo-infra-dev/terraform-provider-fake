@@ -1,47 +1,47 @@
 package main
 
 import (
-	"testing"
+  "testing"
 
-	"github.com/hashicorp/terraform/helper/resource"
+  "github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAccFake__empty(t *testing.T) {
-	config := `
+  config := `
 resource "fake" "test" {
   value = ""
 }
 `
-	resource.Test(t, resource.TestCase{
-		Providers: testAccProviders,
-		Steps: []resource.TestStep{
-			{
-				Config: config,
-				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("fake.test", "id", "toto"),
-					resource.TestCheckResourceAttr("fake.test", "value", ""),
-				),
-			},
-		},
-	})
+  resource.Test(t, resource.TestCase{
+    Providers: testAccProviders,
+    Steps: []resource.TestStep{
+      {
+        Config: config,
+        Check: resource.ComposeTestCheckFunc(
+          resource.TestCheckResourceAttr("fake.test", "id", "toto"),
+          resource.TestCheckResourceAttr("fake.test", "value", ""),
+        ),
+      },
+    },
+  })
 }
 
 func TestAccFake__default_value(t *testing.T) {
-	config := `
+  config := `
 resource "fake" "test" {
   value = ""
 }
 `
-	resource.Test(t, resource.TestCase{
-		Providers: testAccProviders,
-		Steps: []resource.TestStep{
-			{
-				Config: config,
-				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("fake.test", "id", "toto"),
-					resource.TestCheckResourceAttr("fake.test", "value", "plop"),
-				),
-			},
-		},
-	})
+  resource.Test(t, resource.TestCase{
+    Providers: testAccProviders,
+    Steps: []resource.TestStep{
+      {
+        Config: config,
+        Check: resource.ComposeTestCheckFunc(
+          resource.TestCheckResourceAttr("fake.test", "id", "toto"),
+          resource.TestCheckResourceAttr("fake.test", "value", "plop"),
+        ),
+      },
+    },
+  })
 }
